@@ -1,18 +1,24 @@
 export default async function handler(req, res) {
-    const { code } = req.query;
-
-    if (!code) {
-        return res.status(400).send("Missing Discord authorization code.");
-    }
-
-    const clientId = process.1532870250482237530.;
-    const clientSecret = process.y8zyF_HiIp55sE3hAzy92NdlCVhYiq6p;
-
-const redirectUri =
-    "https://chill-zone-dashboard11-iqmzzpb1c-discord-bot9.vercel.app/api/auth/discord";
-
     try {
-        const tokenResponse = await fetch(
+        const { code } = req.query;
+
+        if (!code) {
+            return res.status(400).send("Missing Discord authorization code.");
+        }
+
+        const clientId = process.env.DISCORD_CLIENT_ID;
+        const clientSecret = process.env.DISCORD_CLIENT_SECRET;
+
+        if (!clientId || !clientSecret) {
+            return res.status(500).send(
+                "Discord environment variables are missing in Vercel."
+            );
+        }
+
+        const redirectUri =
+            "https://chill-zone-dashboard11-iqmzzpb1c-discord-bot9.vercel.app/api/auth/discord";
+
+        const response = await fetch(
             "https://discord.com/api/oauth2/token",
             {
                 method: "POST",
@@ -29,16 +35,19 @@ const redirectUri =
             }
         );
 
-        const tokenData = await tokenResponse.json();
+        const data = await response.json();
 
-        if (!tokenResponse.ok) {
-            return res.status(400).json(tokenData);
+        if (!response.ok) {
+            return res.status(400).json(data);
         }
 
-        res.redirect("/dashboard.html");
+        return res.redirect(302, "/dashboard.html");
 
     } catch (error) {
-        console.error(error);
-        res.status(500).send("Something went wrong.");
+        console.error("Discord OAuth Error:", error);
+
+        return res.status(500).send(
+            "Discord login failed. Please check your Vercel environment variables and OAuth2 settings."
+        );
     }
 }
