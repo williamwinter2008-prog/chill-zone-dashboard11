@@ -1,6 +1,5 @@
-export default async function handler(req, res) {
+export default function handler(req, res) {
     const clientId = process.env.DISCORD_CLIENT_ID;
-    const clientSecret = process.env.DISCORD_CLIENT_SECRET;
 
     const redirectUri =
         "https://chill-zone-dashboard11-iqmzzpb1c-discord-bot9.vercel.app/api/auth/discord";
