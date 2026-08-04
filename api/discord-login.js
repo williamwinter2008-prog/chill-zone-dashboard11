@@ -1,12 +1,12 @@
-export default async function handler(req, res) {
-    const clientId = process.env.1532870250482237530;
-    const clientSecret = process.env.AjTUWdRNY0kQwZnXPQSefrCvicvshHat;
+module.exports = async function handler(req, res) {
+    const clientId = process.env.DISCORD_CLIENT_ID;
+    const clientSecret = process.env.DISCORD_CLIENT_SECRET;
 
     const redirectUri =
-    "https://chill-zone-dashboard11-lyge0x7zb-discord-bot9.vercel.app/api/discord-login";
-   
+        "https://chill-zone-dashboard11-lyge0x7zb-discord-bot9.vercel.app/api/discord-login";
+
     try {
-       // Step 1: User has returned from Discord
+        // User returned from Discord
         if (req.query.code) {
             const response = await fetch(
                 "https://discord.com/api/oauth2/token",
@@ -32,11 +32,10 @@ export default async function handler(req, res) {
                 return res.status(400).json(data);
             }
 
-            // Login worked
             return res.redirect(302, "/dashboard.html");
         }
 
-        // Step 2: Start Discord login
+        // Start Discord OAuth2
         const discordUrl =
             "https://discord.com/oauth2/authorize" +
             "?client_id=" + encodeURIComponent(clientId) +
@@ -50,4 +49,4 @@ export default async function handler(req, res) {
         console.error("OAuth error:", error);
         return res.status(500).send("Discord OAuth error.");
     }
-}
+};
