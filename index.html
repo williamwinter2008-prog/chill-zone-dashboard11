@@ -164,18 +164,17 @@
 <body>
 
     <div class="stars"></div>
+<nav class="navbar">
+    <div class="logo">🌌 PixelBot</div>
 
-    <nav class="navbar">
-        <div class="logo">🌌 PixelBot</div>
+    <div class="nav-right">
+        <button class="theme-button" onclick="toggleTheme()">🌙</button>
 
-        <div class="nav-right">
-            <button class="theme-button" onclick="toggleTheme()">🌙</button>
-         
-         <a href="/api/auth/discord" class="login-button">
-    Login with Discord
-</a>
-        </div>
-    </nav>
+        <a href="/api/discord-login" class="login-button">
+            Login with Discord
+        </a>
+    </div>
+</nav>
 
     <main class="hero">
         <div class="hero-content">
@@ -195,7 +194,7 @@
                 leveling and premium features.
             </p>
 
-    <div class="buttons">
+ <div class="buttons">
 
     <a
         href="https://discord.com/oauth2/authorize?client_id=1532870250482237530&permissions=8&integration_type=0&scope=bot+applications.commands"
@@ -206,12 +205,14 @@
     </a>
 
     <a
-   <a href="/api/discord-login" class="secondary-button">
-    Open Dashboard
-</a>
+        href="/api/discord-login"
+        class="secondary-button"
+    >
+        Open Dashboard
+    </a>
 
 </div>
-                </a>
+            
             </div>
 
         </div>
