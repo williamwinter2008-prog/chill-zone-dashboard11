@@ -5,11 +5,11 @@ export default async function handler(req, res) {
         return res.status(400).send("Missing Discord authorization code.");
     }
 
-    const clientId = process.env.DISCORD_CLIENT_ID;
-    const clientSecret = process.env.DISCORD_CLIENT_SECRET;
+    const clientId = process.1532870250482237530.;
+    const clientSecret = process.y8zyF_HiIp55sE3hAzy92NdlCVhYiq6p;
 
-    const redirectUri =
-        "https://chill-zone-dashboard11-iqmzzpb1c-discord-bot9.vercel.app/api/auth/discord";
+const redirectUri =
+    "https://chill-zone-dashboard11-iqmzzpb1c-discord-bot9.vercel.app/api/auth/discord";
 
     try {
         const tokenResponse = await fetch(
