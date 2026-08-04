@@ -3,10 +3,10 @@ export default async function handler(req, res) {
     const clientSecret = process.env.AjTUWdRNY0kQwZnXPQSefrCvicvshHat;
 
     const redirectUri =
-        "https://chill-zone-dashboard11-iqmzzpb1c-discord-bot9.vercel.app/api/discord-login";
-
+    "https://chill-zone-dashboard11-lyge0x7zb-discord-bot9.vercel.app/api/discord-login";
+   
     try {
-        // Step 1: User has returned from Discord
+       // Step 1: User has returned from Discord
         if (req.query.code) {
             const response = await fetch(
                 "https://discord.com/api/oauth2/token",
